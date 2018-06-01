@@ -14,39 +14,37 @@ import { fetchSources, fetchArticlesBySource } from '../../helpers/api';
 // Add details about the news source when it's selected
 
 export default class NewsSearch extends Component {
-
   state = {
     sources: [],
     articles: []
   };
 
   componentDidMount() {
-    fetchSources()
-      .then(sources => this.setState({ sources }, () => this.handleSourceChange()));
+    fetchSources().then(sources =>
+      this.setState({ sources }, () => this.handleSourceChange())
+    );
   }
 
   handleSourceChange = (source = this.state.sources[0].id) => {
-    fetchArticlesBySource(source)
-      .then(articles => this.setState({ articles }));
-  }
+    fetchArticlesBySource(source).then(articles => this.setState({ articles }));
+  };
 
   render() {
     return (
       <div className="container">
         <Search
-          sources={ this.state.sources }
-          onChange={ this.handleSourceChange }
+          sources={this.state.sources}
+          onChange={this.handleSourceChange}
         />
         <PageHeader>
           <Source />
         </PageHeader>
         <div className="row">
           <div className="col-sm-12">
-            <ArticleList articles={ this.state.articles }/>
+            <ArticleList articles={this.state.articles} />
           </div>
         </div>
       </div>
     );
   }
 }
-

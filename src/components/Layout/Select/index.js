@@ -3,42 +3,39 @@ import PropTypes from 'prop-types';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 export default class Select extends Component {
-
   state = { selected: '' };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState(
       { selected: event.target.value },
       this.props.onChange(event.target.value)
     );
-  }
+  };
 
   buildOptions = () => {
-    if (!this.props.options) return <option></option>;
+    if (!this.props.options) return <option />;
 
     return this.props.options.map((option, index) => {
       return (
-        <option key={ index } value={ option.value }>
-          { option.text }
+        <option key={index} value={option.value}>
+          {option.text}
         </option>
       );
     });
-  }
+  };
 
   render() {
     return (
-      <form >
-        <FormGroup
-          controlId="formControlsSelect"
-        >
-          <ControlLabel>{ this.props.label || "Select" }</ControlLabel>
+      <form>
+        <FormGroup controlId="formControlsSelect">
+          <ControlLabel>{this.props.label || 'Select'}</ControlLabel>
           <FormControl
             componentClass="select"
             placeholder="select"
-            onChange={ this.handleChange }
-            value={ this.state.selected }
+            onChange={this.handleChange}
+            value={this.state.selected}
           >
-            { this.buildOptions() }
+            {this.buildOptions()}
           </FormControl>
         </FormGroup>
       </form>

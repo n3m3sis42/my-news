@@ -19,7 +19,10 @@ export const fetchSources = async () => {
 export const fetchArticlesBySource = async (source = 'abc-news') => {
   const params = { params: { sources: source } };
   try {
-    const res = await axios.get(`${BASE_URL}/top-headlines`, merge(options, params));
+    const res = await axios.get(
+      `${BASE_URL}/top-headlines`,
+      merge(options, params)
+    );
     return res.data.articles;
   } catch (err) {
     console.error(err);
