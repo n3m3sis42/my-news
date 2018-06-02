@@ -51,5 +51,5 @@ Select.propTypes = {
       text: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func.isRequired
 };

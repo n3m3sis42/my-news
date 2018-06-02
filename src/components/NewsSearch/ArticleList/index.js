@@ -47,8 +47,8 @@ ArticleList.propTypes = {
     PropTypes.shape({
       source: PropTypes.shape({
         id: PropTypes.string,
-        name: PropTypes.string.isRequired
-      }).isRequired,
+        name: PropTypes.string
+      }),
       author: PropTypes.string,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
