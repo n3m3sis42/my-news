@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { merge } from 'lodash';
-import { keys } from '../config/keys';
+import { keys } from '../config/prod';
 
 const BASE_URL = 'https://newsapi.org/v2';
 const API_KEY = keys.newsApi;
