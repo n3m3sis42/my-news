@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 const ArticleList = props => {
+  const { articles } = props;
+  if (articles.length === 0) return <div>No articles found</div>;
+
+  // ============ react-bootstrap-table-next configuration ================= //
+
   const formatDate = cell => cell.replace(/[a-zA-Z]/g, ' ').trim();
 
   const formatUrl = cell => (
@@ -30,17 +35,20 @@ const ArticleList = props => {
     }
   ];
 
-  if (!props.articles || props.articles.length === 0)
-    return <div>No articles found</div>;
+  // ======================================================================= //
 
   return (
     <div className="col-md-12">
-      <BootstrapTable keyField="url" data={props.articles} columns={columns} />
+      <BootstrapTable keyField="url" data={articles} columns={columns} />
     </div>
   );
 };
 
 export default ArticleList;
+
+ArticleList.defaultProps = {
+  articles: []
+};
 
 ArticleList.propTypes = {
   articles: PropTypes.arrayOf(

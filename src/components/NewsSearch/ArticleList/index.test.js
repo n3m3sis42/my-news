@@ -24,8 +24,15 @@ describe('ArticleList', () => {
     shallow(<ArticleList {...props}/>);
   });
 
-  it('renders the <BootstrapTable /> component', () => {
+  it('renders the <BootstrapTable /> component if articles are found', () => {
     const wrapper = shallow(<ArticleList {...props}/>);
     expect(wrapper.find(BootstrapTable)).toHaveLength(1);
+  });
+
+  it('displays the correct message if no articles are found', () => {
+    // const articles = [];
+    const wrapper = shallow(<ArticleList />);
+    expect(wrapper.html()).toEqual('<div>No articles found</div>');
+    // console.log(wrapper.html());
   });
 });
