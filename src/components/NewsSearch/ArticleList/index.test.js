@@ -30,9 +30,7 @@ describe('ArticleList', () => {
   });
 
   it('displays the correct message if no articles are found', () => {
-    // const articles = [];
     const wrapper = shallow(<ArticleList />);
     expect(wrapper.html()).toEqual('<div>No articles found</div>');
-    // console.log(wrapper.html());
   });
 });

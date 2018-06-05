@@ -10,7 +10,7 @@ const ArticleList = props => {
 
   const formatTitle = cell => cell || 'Untitled';
 
-  const formatDate = cell => cell.replace(/[a-zA-Z]/g, ' ').trim();
+  const formatDate = cell => new Date(cell).toLocaleString();
 
   const formatUrl = cell => (
     <a href={cell} target="_blank">
@@ -42,7 +42,12 @@ const ArticleList = props => {
 
   return (
     <div className="col-md-12">
-      <BootstrapTable keyField="url" data={articles} columns={columns} />
+      <BootstrapTable
+        keyField="url"
+        data={articles}
+        columns={columns}
+        striped
+      />
     </div>
   );
 };

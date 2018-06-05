@@ -39,7 +39,7 @@ export default class NewsSearch extends Component {
           <div className="col-sm-4" />
           <div className="col-sm-4 text-center">
             <Select
-              label="Select a news source to get started!"
+              label="Select a news source to browse its top headlines!"
               options={selectOptions}
               onChange={this.handleSourceChange}
             />
