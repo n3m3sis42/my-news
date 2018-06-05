@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-import { PageHeader } from 'react-bootstrap';
 
-import Search from './Search/index';
-import Source from './Source/index';
+import Select from '../Layout/Select/index';
 import ArticleList from './ArticleList/index';
 
 import { fetchSources, fetchArticlesBySource } from '../../helpers/api';
-
-// NOTE: Update this to filter on language and country with checkboxes?
-// Add proptypes to all components
-// Pagination or increasing # of search results
-// Style this to look nicer
-// Add details about the news source when it's selected
 
 export default class NewsSearch extends Component {
   state = {
@@ -20,28 +12,43 @@ export default class NewsSearch extends Component {
   };
 
   componentDidMount() {
-    fetchSources().then(sources =>
-      this.setState({ sources }, () => this.handleSourceChange())
-    );
+    fetchSources()
+      .then(sources => this.setState({ sources },
+        () => this.handleSourceChange(this.state.sources[0].id)
+      ))
+      .catch(err => console.error(err));
   }
 
-  handleSourceChange = (source = this.state.sources[0].id) => {
-    fetchArticlesBySource(source).then(articles => this.setState({ articles }));
+  handleSourceChange = (source) => {
+    fetchArticlesBySource(source)
+      .then(articles => this.setState({ articles }))
+      .catch(err => console.error(err));
   };
 
   render() {
+    const {
+      sources,
+      articles
+    } = this.state;
+
+    const selectOptions = sources && sources.map(source => ({ value: source.id, text: source.name }));
+
     return (
       <div className="container">
-        <Search
-          sources={this.state.sources}
-          onChange={this.handleSourceChange}
-        />
-        <PageHeader>
-          <Source />
-        </PageHeader>
+        <div className="row">
+          <div className="col-sm-4" />
+          <div className="col-sm-4 text-center">
+            <Select
+              label="Select a news source to get started!"
+              options={selectOptions}
+              onChange={this.handleSourceChange}
+            />
+          </div>
+          <div className="col-sm-4" />
+        </div>
         <div className="row">
           <div className="col-sm-12">
-            <ArticleList articles={this.state.articles} />
+            <ArticleList articles={articles} />
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ const ArticleList = props => {
 
   // ============ react-bootstrap-table-next configuration ================= //
 
+  const formatTitle = cell => cell || 'Untitled';
+
   const formatDate = cell => cell.replace(/[a-zA-Z]/g, ' ').trim();
 
   const formatUrl = cell => (
@@ -20,7 +22,8 @@ const ArticleList = props => {
     {
       dataField: 'title',
       text: 'Title',
-      sort: true
+      sort: true,
+      formatter: formatTitle
     },
     {
       dataField: 'publishedAt',
